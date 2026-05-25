@@ -1,0 +1,116 @@
+{
+  "build": {
+  },
+  "cliPackageVersion": "4.4.6",
+  "config": {
+    "dirs": [
+      "./trigger"
+    ],
+    "project": "proj_qcdebusykqoqihpesoib"
+  },
+  "configPath": "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/trigger.config.mjs",
+  "contentHash": "b2db845b222b949a0c78b6c4667060cd",
+  "customConditions": [
+  ],
+  "deploy": {
+    "env": {
+    }
+  },
+  "environment": "dev",
+  "externals": [
+    {
+      "name": "import-in-the-middle",
+      "version": "1.15.0"
+    }
+  ],
+  "files": [
+    {
+      "entry": "trigger/stripe-webhook.ts",
+      "out": "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/trigger/stripe-webhook.mjs"
+    },
+    {
+      "entry": "trigger/transactional-email.ts",
+      "out": "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/trigger/transactional-email.mjs"
+    }
+  ],
+  "indexWorkerEntryPoint": "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/node_modules/trigger.dev/dist/esm/entryPoints/dev-index-worker.mjs",
+  "otelImportHook": {
+    "include": [
+    ]
+  },
+  "outputHashes": {
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/chunk-234SQTBC.mjs": "TiXwTEMCXms",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/chunk-234SQTBC.mjs.map": "s44f3ZLy2qk",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/chunk-34NHXNPY.mjs": "4DnxSvluqDE",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/chunk-34NHXNPY.mjs.map": "0hUYe/JeB9A",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/chunk-62GFTMDR.mjs": "yiNxfiwwUmY",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/chunk-62GFTMDR.mjs.map": "ApXN3Y9zpbA",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/chunk-6QBBEOUN.mjs": "JGrLoNoDUhM",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/chunk-6QBBEOUN.mjs.map": "uYqYY4cggg0",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/chunk-DPUW62IF.mjs": "WnisjRGxkzk",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/chunk-DPUW62IF.mjs.map": "lClc2UqpqQw",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/chunk-KIKI7YVX.mjs": "+SJUSdm4Ar4",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/chunk-KIKI7YVX.mjs.map": "5rkOYhBMqmc",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/chunk-MH2JEEC2.mjs": "viEjA1NYg9g",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/chunk-MH2JEEC2.mjs.map": "LMPzUuAiOIM",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/chunk-Q7CCAEH6.mjs": "+uNMQytH11I",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/chunk-Q7CCAEH6.mjs.map": "fhm3KjIkXa0",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/chunk-SOPMFPK3.mjs": "0BZthCZecIc",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/chunk-SOPMFPK3.mjs.map": "QI+6AxM/In8",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/chunk-SWWEV3XL.mjs": "Eb9qbiqn2qU",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/chunk-SWWEV3XL.mjs.map": "0/FnzpbgRgc",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/crypto.node-EL5HNRMW.mjs": "rhIb9HalQMQ",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/crypto.node-EL5HNRMW.mjs.map": "0b4tlwmkM3g",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/esm-KIP7MZT4.mjs": "LXpF4HlrMts",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/esm-KIP7MZT4.mjs.map": "VON93E1In1A",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/getMachineId-bsd-UBYVKSRG.mjs": "rEiVgfrGolE",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/getMachineId-bsd-UBYVKSRG.mjs.map": "MEVdITbbMCE",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/getMachineId-darwin-RIFXDU2W.mjs": "N79v8dK6W0k",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/getMachineId-darwin-RIFXDU2W.mjs.map": "hd3Uo5mbO8o",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/getMachineId-linux-Q76AJWWF.mjs": "cj8LHw6FeFo",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/getMachineId-linux-Q76AJWWF.mjs.map": "LR3Lh4qLcJM",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/getMachineId-unsupported-G5BDTWWU.mjs": "EB2izg1ER7c",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/getMachineId-unsupported-G5BDTWWU.mjs.map": "2eHyOg8TCJ4",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/getMachineId-win-CHYYGUUO.mjs": "wBXiPpK5aT8",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/getMachineId-win-CHYYGUUO.mjs.map": "p2vMLwR5uFk",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/node_modules/trigger.dev/dist/esm/entryPoints/dev-index-worker.mjs": "3hmXgAs/F3Y",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/node_modules/trigger.dev/dist/esm/entryPoints/dev-index-worker.mjs.map": "KbYDobosdYQ",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/node_modules/trigger.dev/dist/esm/entryPoints/dev-run-worker.mjs": "RJRx/goI7GM",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/node_modules/trigger.dev/dist/esm/entryPoints/dev-run-worker.mjs.map": "vwXtss3QBX0",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/s2s-WO234YX3.mjs": "9AlbWpjwiq8",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/s2s-WO234YX3.mjs.map": "m9pZ2T5fXwA",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/trigger.config.mjs": "lADg0JJ74vI",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/trigger.config.mjs.map": "uyk4jBOqqGc",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/trigger/stripe-webhook.mjs": "mqFJmN4ku04",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/trigger/stripe-webhook.mjs.map": "RNgpoCMMp0M",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/trigger/transactional-email.mjs": "t3muqGrngLM",
+    "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/trigger/transactional-email.mjs.map": "SGyHk01g+go"
+  },
+  "outputPath": "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6",
+  "packageVersion": "4.4.6",
+  "runWorkerEntryPoint": "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/node_modules/trigger.dev/dist/esm/entryPoints/dev-run-worker.mjs",
+  "runtime": "node",
+  "sources": {
+    "package.json": {
+      "contentHash": "303e6b5028789d83c1630719db7f01ae",
+      "contents": "eJyNVcFy2yAQvfsrGJ0NkhzbjX3KoT32DzKZwWgjb4JAA0iOm8m/dxBIwrHd6Q32vYXH29Xqc0FIpngD2Z5kDXBJxRFeKcds6ZEejEWtPFiwkhUh2hrsufMpznQwhKww2Dqb7cnnghBCsgp6n6XgwxG/XobwoUNZTUDYRcg6btwEhV2EJKoBAetXxBoxIu7cgjiCePews4JQqvSvBl1KoP9kvGrT8OH41oBzCIZQejLogLBLzn46J2EOsZlpncEW9hKtg8E3pSsg0Z48oHlAWfNmJ5kG6xrMPtoWt945Qimonr6iBMJA9UxqweV1Xiv1+TJ1iCyncuy5lJ4gtBKdMaCcPBP6TqgivG2Xb/pgl0EfoYKIM1fLM0ipT8uG16AcJ8+ZahtiOuV1PWfJPpF/Eb9w4znLFoR8Df1SQQuqAiUQkqZ5MrzCD9phboALR7kE42iFXOraS38pWcE245u+s/+bZ3Rb6ZOiDahuoK9Ywbb36JIfQE601T2aBQnCTbziLk9qFzWu2Pou64ROHCfeLM52LT9wC7m1ZoALVqaqZjwu6JuNospiw8qJGEvGKuhzWw1d/bJm6/kqIbm1tOcGuRJAeeeO2qA7x1t/zGcJaT/GO+ao7ARWQIf3xJzNtpyN8Z+5j5fb9IETvdxdhWmlm1uQBVVF/cV8f+i9YOEj28wXO47yhKqiDZgaovDtNS6spVxhE0ZdaKofI+mPDlc+sJUvY9LY/c/bvZ0cm7faOmFDYeYe8LPK5n5gBFHFN2S2stzdgkZ/UrjHAwhdQcM/ciFxnOSbqWPScTAke3MnE8PEDfHLGBVavWJNb5dxHJDRo+R7GPvSIyu228zfQGLQpTFJq1636fD+YbwO2GYuhe7BGKzSIiS++5YoJ1Vdh0M9y/XFt6tbUA4kNODMOT9q66hforDByIdH9jA97GwdNKjCvyL+NTfsoZy1Wi3ewTHUHlqzNHlEqJAIwfELAqgaFcTULdvOh57ic1a+96fHt1y88xp+c8XrUAbVNk9lwXasyBZfi78ZgjYU"
+    },
+    "trigger.config.ts": {
+      "contentHash": "de2218b661a756db9c0e6cd38418e703",
+      "contents": "eJxVjUELgjAYhu/7FR87FcgUuuklKJO6FMNbhIj7JqvcZJsiqP89Fl16Ty8vz8Orut5YDzMIlErjwWipWlhBWtMB3Xur2hYtEzjGTrxoRghOX0OgrIe3//M2MwHorXli49NQGnSOoR5Zyc9FkfPqxq+X/FBWPD/BsgANcDWF0IgACGVdCnfK4t8xfYS5q6fjYGuvjE5hlyQRWbcZ+QDxYz5L"
+    },
+    "trigger/stripe-webhook.ts": {
+      "contentHash": "39908128806d7f9b03ddc6adb6d860a5",
+      "contents": "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"
+    },
+    "trigger/transactional-email.ts": {
+      "contentHash": "0ede9f17e7e8ba909656f840bc9a24c8",
+      "contents": "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"
+    },
+    "tsconfig.json": {
+      "contentHash": "4b1793e7a7c9fa45d9b8545232099894",
+      "contents": "eJx1UctqwzAQvPsrxB5NYre9FHIqlBwaGgrtMYQiW0uiRg8jrVOXkH8vkuWkdslp2Zmd0c7qlDEGtdWNVOjeGpLWeFiwU8YYY0Dc7ZBgwWD58XB3/wizHleyggXbgLAaZiyUQhI6XikMPXqDHcE2TXOl7Pcq2JJrMYH+IJtXWT3vsT5MGHKypjFm7FLLCYZ+bUWr8MUQOtuMSR2psHlaZoS/o7eqDWHDRNUaodANIy6QR1x5a9aDyx9n6a3ihKLnJqm+fBccHfKa5qEZRKZ2qNEQV2NBo9qdjCffRICl0/epuY4RYoAEn2MdTttw2l//izF4KvP4M0XpXV3msM0G0TlIwiKqFXh5L3rP0RwLUZAf1s3zMv/fdqNeX/kimJT006AvJ9KeEnic0FnKANhdFgJjBX7qdNfZbfE2O2e/v/a+wA=="
+    }
+  },
+  "target": "dev"
+}

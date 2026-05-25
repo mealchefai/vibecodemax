@@ -159,7 +159,7 @@ export const fonts = {
     weights: ["400", "500", "700"],
   },
   secondary: {
-    family: "Poppins",
+    family: "Space Grotesk",
     fallbacks: ["sans-serif"],
     subsets: ["latin"],
     weights: ["400", "600", "700"],

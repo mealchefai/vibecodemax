@@ -20,13 +20,13 @@ const features = [
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth={2}
-          d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+          d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
         />
       </svg>
     ),
-    title: "Next.js 16 + TypeScript",
+    title: "Your Numbers, Calculated Precisely",
     description:
-      "Built on the latest Next.js with TypeScript, Tailwind CSS, and modern React patterns for maximum performance and developer experience.",
+      "Enter your age, gender, weight, height, and activity level and we calculate your Basal Metabolic Rate and exact daily calorie target — no guesswork, no generic charts.",
   },
   {
     icon: (
@@ -40,13 +40,13 @@ const features = [
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth={2}
-          d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
+          d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"
         />
       </svg>
     ),
-    title: "Polished User Flows",
+    title: "Meal Plans Built Around You",
     description:
-      "Clear paths for visitors and signed-in users, with layouts that stay focused on the task at hand.",
+      "Every plan is generated from your personal metrics. Whether your goal is weight loss, muscle gain, or maintenance, your meals match your body's actual needs.",
   },
   {
     icon: (
@@ -60,73 +60,13 @@ const features = [
           strokeLinecap="round"
           strokeLinejoin="round"
           strokeWidth={2}
-          d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"
+          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
         />
       </svg>
     ),
-    title: "Reusable Components",
+    title: "Nutritionist-Grade, Zero Appointments",
     description:
-      "Consistent cards, buttons, forms, navigation, and feedback states ready for product-specific screens.",
-  },
-  {
-    icon: (
-      <svg
-        className="h-7 w-7"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M4 7v10c0 2.21 3.582 4 8 4s8-1.79 8-4V7M4 7c0 2.21 3.582 4 8 4s8-1.79 8-4M4 7c0-2.21 3.582-4 8-4s8 1.79 8 4"
-        />
-      </svg>
-    ),
-    title: "Data Ready",
-    description:
-      "A structure that can support dynamic content, user data, and operational workflows as your app grows.",
-  },
-  {
-    icon: (
-      <svg
-        className="h-7 w-7"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-        />
-      </svg>
-    ),
-    title: "Deploy Anywhere",
-    description:
-      "A standard Next.js app shape that works with common hosting platforms and deployment workflows.",
-  },
-  {
-    icon: (
-      <svg
-        className="h-7 w-7"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-        />
-      </svg>
-    ),
-    title: "Maintainable Foundation",
-    description:
-      "Readable project structure, typed code, and design tokens that make future changes easier to manage.",
+      "Get the kind of tailored nutritional guidance that used to require expensive consultations — available instantly, whenever you need it.",
   },
 ];
 
@@ -140,11 +80,11 @@ export function FeaturesSection() {
         {/* Header */}
         <div className="mx-auto max-w-4xl text-center mb-16">
           <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground">
-            <span>Everything You Need to Ship Fast</span>
+            <span>How Meal Chef Works For You</span>
           </h2>
           <p className="mt-6 text-lg leading-7 text-muted-foreground">
-            Start from a clean foundation and focus on building the details that
-            make your product valuable.
+            Tell us about yourself once. We handle the nutrition science so you
+            can focus on eating well.
           </p>
         </div>
 

@@ -1,4 +1,4 @@
-import { Inter, Poppins } from "next/font/google";
+import { Inter, Space_Grotesk } from "next/font/google";
 
 const primaryFont = Inter({
   subsets: ["latin"],
@@ -9,7 +9,7 @@ const primaryFont = Inter({
   preload: true,
 });
 
-const secondaryFont = Poppins({
+const secondaryFont = Space_Grotesk({
   subsets: ["latin"],
   weight: ["400", "600", "700"],
   display: "swap",

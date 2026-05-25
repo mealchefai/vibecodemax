@@ -26,7 +26,7 @@ export function HeroSection() {
                     New
                   </span>
                   <span className="text-text-secondary font-medium text-sm">
-                    Ready to launch
+                    BMI based meal plans
                   </span>
                   <div className="flex items-center justify-center w-5 h-5 rounded-full bg-primary">
                     <svg
@@ -48,19 +48,18 @@ export function HeroSection() {
 
               {/* Headlines */}
               <h1 className="text-5xl font-heading font-extrabold tracking-tight text-text-primary sm:text-6xl lg:text-7xl animate-fade-in text-center lg:text-left">
-                <span>Launch Your SaaS In </span>
-                <span className="text-primary">Just A Weekend</span>
+                <span>Your Personal AI </span>
+                <span className="text-primary">Meal Planning Assistant</span>
               </h1>
               <p className="mt-8 text-xl leading-relaxed text-text-secondary animate-slide-in text-center lg:text-left">
-                Start with a polished, responsive foundation and focus on the
-                product experience that makes your app useful.
+                Nutritionist grade meal plans without the hourly fees and appointments.
               </p>
 
               {/* CTAs */}
               <div className="mt-12 flex flex-col sm:flex-row items-center gap-4 animate-slide-in justify-center lg:justify-start">
                 <Button size="lg" variant="default" asChild>
                   <Link href="/register">
-                    Start Building
+                    Start Planning
                     <svg
                       className="ml-2 h-5 w-5"
                       fill="none"

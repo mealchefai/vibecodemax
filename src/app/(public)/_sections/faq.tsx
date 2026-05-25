@@ -10,19 +10,19 @@ interface FAQItem {
 
 const faqs: FAQItem[] = [
   {
-    question: "What is included?",
+    question: "How does Meal Chef calculate my meal plan?",
     answer:
-      "A polished app foundation with responsive pages, reusable components, design tokens, and room to add the workflows your product needs.",
+      "We use your age, gender, weight, height, and activity level to calculate your Basal Metabolic Rate (BMR). From there we work out your daily calorie target and build a meal plan that hits your macros based on your goal — whether that's losing weight, gaining muscle, or maintaining.",
   },
   {
-    question: "Can I customize the design?",
+    question: "What information do I need to get started?",
     answer:
-      "Yes. The entire UI is powered by design tokens (colors, radius, shadows). Update tokens and the components restyle automatically.",
+      "Just the basics — your age, gender, current weight, height, and how active you are day to day. The whole setup takes under two minutes and your plan is ready immediately after.",
   },
   {
-    question: "How fast can I launch?",
+    question: "Is this the same as seeing a dietitian?",
     answer:
-      "You can start with the included pages immediately, then replace the sample copy and sections with your own product details.",
+      "Meal Chef uses the same science-backed formulas that nutritionists use to calculate calorie and macro targets. While it doesn't replace a medical consultation, it gives you personalised, accurate guidance without the cost or wait time.",
   },
 ];
 
@@ -41,7 +41,8 @@ export function FAQSection() {
             Frequently Asked Questions
           </h2>
           <p className="mt-6 text-lg leading-8 text-text-secondary">
-            Answers to common questions about launching from this foundation.
+            Everything you need to know about how Meal Chef builds a plan
+            around your body.
           </p>
         </div>
 

@@ -6,8 +6,6 @@ interface Testimonial {
   quote: string;
   author: {
     name: string;
-    title: string;
-    company: string;
     avatar?: string;
   };
   rating?: number;
@@ -35,61 +33,25 @@ const StarRating = ({ rating = 5 }: { rating?: number }) => {
 const testimonials: Testimonial[] = [
   {
     quote:
-      "This foundation helped us move from idea to a polished product much faster than starting from a blank project.",
+      "I've tried calorie counting apps before but nothing ever felt personal. Meal Chef actually looked at my stats and gave me meals that fit my life — I lost 6kg in two months without feeling like I was starving.",
     author: {
-      name: "Elena Vale",
-      title: "CTO",
-      company: "TechFlow",
+      name: "Sarah Okonkwo",
     },
     rating: 5,
   },
   {
     quote:
-      "Finally, a boilerplate that actually delivers. Clean code, great documentation, and everything I need to launch fast.",
+      "As someone who works out five days a week, I needed a plan built around muscle gain, not just weight loss. The BMR calculation was spot on and the meal variety keeps me from getting bored.",
     author: {
-      name: "Jonah Mercer",
-      title: "Founder",
-      company: "StartupLab",
+      name: "Marcus Reid",
     },
     rating: 5,
   },
   {
     quote:
-      "The best investment I made for my SaaS. Shipped to production in 2 weeks instead of 2 months.",
+      "I used to spend a fortune seeing a dietitian every month. Meal Chef gives me the same level of personalisation at a fraction of the cost. The plans adjust as my weight changes too — it feels like it actually knows me.",
     author: {
-      name: "Emily Watson",
-      title: "Full Stack Developer",
-      company: "IndieDev",
-    },
-    rating: 5,
-  },
-  {
-    quote:
-      "The architecture stayed easy to work with as the product moved from prototype to real customer usage.",
-    author: {
-      name: "David Kim",
-      title: "Lead Engineer",
-      company: "GrowthCorp",
-    },
-    rating: 5,
-  },
-  {
-    quote:
-      "Love how everything is configurable through design tokens. Consistent branding across the entire app.",
-    author: {
-      name: "Jessica Taylor",
-      title: "Product Designer",
-      company: "DesignStudio",
-    },
-    rating: 5,
-  },
-  {
-    quote:
-      "The deployment workflow is chef's kiss. One command and everything is live with monitoring included.",
-    author: {
-      name: "Alex Thompson",
-      title: "DevOps Engineer",
-      company: "CloudNative",
+      name: "Priya Nair",
     },
     rating: 5,
   },
@@ -102,11 +64,11 @@ export function TestimonialsSection() {
         {/* Header */}
         <div className="mx-auto max-w-4xl text-center mb-16">
           <h2 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-foreground">
-            <span>Loved By Thousands Of Developers</span>
+            <span>Real People, Real Results</span>
           </h2>
           <p className="mt-6 text-lg leading-7 text-muted-foreground">
-            See what builders are saying about starting from a polished app
-            foundation.
+            See what our members are saying about eating smarter with a plan
+            built around their body.
           </p>
         </div>
 
@@ -156,9 +118,6 @@ export function TestimonialsSection() {
                   <div>
                     <div className="font-bold text-foreground">
                       {testimonial.author.name}
-                    </div>
-                    <div className="text-sm text-text-secondary">
-                      {testimonial.author.title} at {testimonial.author.company}
                     </div>
                   </div>
                 </div>

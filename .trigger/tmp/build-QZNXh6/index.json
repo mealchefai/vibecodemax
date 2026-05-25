@@ -1,0 +1,135 @@
+{
+  "configPath": "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/trigger.config.mjs",
+  "customConditions": [
+  ],
+  "prompts": [
+  ],
+  "queues": [
+  ],
+  "runtime": "node",
+  "runtimeVersion": "24.11.1",
+  "tasks": [
+    {
+      "entryPoint": "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/trigger/stripe-webhook.mjs",
+      "filePath": "trigger/stripe-webhook.ts",
+      "id": "payment-checkout-completed",
+      "maxDuration": 300,
+      "retry": {
+        "factor": 2,
+        "maxAttempts": 3,
+        "maxTimeoutInMs": 60000,
+        "minTimeoutInMs": 1000,
+        "randomize": true
+      }
+    },
+    {
+      "entryPoint": "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/trigger/stripe-webhook.mjs",
+      "filePath": "trigger/stripe-webhook.ts",
+      "id": "payment-subscription-created",
+      "maxDuration": 300,
+      "retry": {
+        "factor": 2,
+        "maxAttempts": 3,
+        "maxTimeoutInMs": 60000,
+        "minTimeoutInMs": 1000,
+        "randomize": true
+      }
+    },
+    {
+      "entryPoint": "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/trigger/stripe-webhook.mjs",
+      "filePath": "trigger/stripe-webhook.ts",
+      "id": "payment-subscription-updated",
+      "maxDuration": 300,
+      "retry": {
+        "factor": 2,
+        "maxAttempts": 3,
+        "maxTimeoutInMs": 60000,
+        "minTimeoutInMs": 1000,
+        "randomize": true
+      }
+    },
+    {
+      "entryPoint": "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/trigger/stripe-webhook.mjs",
+      "filePath": "trigger/stripe-webhook.ts",
+      "id": "payment-subscription-deleted",
+      "maxDuration": 300,
+      "retry": {
+        "factor": 2,
+        "maxAttempts": 3,
+        "maxTimeoutInMs": 60000,
+        "minTimeoutInMs": 1000,
+        "randomize": true
+      }
+    },
+    {
+      "entryPoint": "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/trigger/stripe-webhook.mjs",
+      "filePath": "trigger/stripe-webhook.ts",
+      "id": "payment-invoice-succeeded",
+      "maxDuration": 300,
+      "retry": {
+        "factor": 2,
+        "maxAttempts": 3,
+        "maxTimeoutInMs": 60000,
+        "minTimeoutInMs": 1000,
+        "randomize": true
+      }
+    },
+    {
+      "entryPoint": "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/trigger/stripe-webhook.mjs",
+      "filePath": "trigger/stripe-webhook.ts",
+      "id": "payment-invoice-failed",
+      "maxDuration": 300,
+      "retry": {
+        "factor": 2,
+        "maxAttempts": 3,
+        "maxTimeoutInMs": 60000,
+        "minTimeoutInMs": 1000,
+        "randomize": true
+      }
+    },
+    {
+      "entryPoint": "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/trigger/transactional-email.mjs",
+      "filePath": "trigger/transactional-email.ts",
+      "id": "email-welcome",
+      "maxDuration": 300,
+      "retry": {
+        "factor": 2,
+        "maxAttempts": 3,
+        "maxTimeoutInMs": 60000,
+        "minTimeoutInMs": 1000,
+        "randomize": true
+      }
+    },
+    {
+      "entryPoint": "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/trigger/transactional-email.mjs",
+      "filePath": "trigger/transactional-email.ts",
+      "id": "email-subscription-canceled",
+      "maxDuration": 300,
+      "retry": {
+        "factor": 2,
+        "maxAttempts": 3,
+        "maxTimeoutInMs": 60000,
+        "minTimeoutInMs": 1000,
+        "randomize": true
+      }
+    },
+    {
+      "entryPoint": "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/trigger/transactional-email.mjs",
+      "filePath": "trigger/transactional-email.ts",
+      "id": "email-payment-failed",
+      "maxDuration": 300,
+      "retry": {
+        "factor": 2,
+        "maxAttempts": 3,
+        "maxTimeoutInMs": 60000,
+        "minTimeoutInMs": 1000,
+        "randomize": true
+      }
+    }
+  ],
+  "timings": {
+    "trigger/stripe-webhook.ts": 10.663083,
+    "trigger/transactional-email.ts": 0.5689999999999884
+  },
+  "workerEntryPoint": "/Users/gwinyainyatsoka/Downloads/Download/Meal-Chef-AI/.trigger/tmp/build-QZNXh6/node_modules/trigger.dev/dist/esm/entryPoints/dev-run-worker.mjs"
+}
