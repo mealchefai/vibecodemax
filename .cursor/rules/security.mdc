@@ -1,0 +1,7 @@
+---
+description: Security
+alwaysApply: false
+---
+# Security
+
+Apply secure-by-default practices for auth, data, and integrations.

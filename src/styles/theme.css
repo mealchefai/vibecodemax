@@ -1,0 +1,12 @@
+/* Modern SaaS Design System - Token-based Theme Variables */
+/* NOTE: All token CSS variables are injected via SSR from design-tokens.ts */
+/* See: src/lib/design-tokens/css-vars.ts and src/app/layout.tsx */
+
+:root {
+  /* Typography fonts (set by next/font at runtime, not from design-tokens.ts) */
+  /* These are fallback values that get overridden when next/font loads */
+  --token-font-primary:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --token-font-secondary:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}

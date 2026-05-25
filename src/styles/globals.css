@@ -1,0 +1,222 @@
+/* Global styles + Tailwind v4 theme mappings.
+ * Design tokens are exposed as CSS variables via SSR and then consumed here. */
+
+@plugin "tailwindcss-animate";
+
+@import "tailwindcss" source(none);
+@source "../app/**/*.{js,ts,jsx,tsx,mdx}";
+@source "../components/**/*.{js,ts,jsx,tsx,mdx}";
+@source "../pages/**/*.{js,ts,jsx,tsx,mdx}";
+
+/* Tailwind v4 Theme Configuration
+ * Map token variables into Tailwind/shadcn semantic slots and utilities. */
+@theme {
+  /* Font families (token-driven via next/font variables) */
+  --font-family-sans: var(--token-font-primary);
+  --font-family-heading: var(--token-font-secondary);
+
+  /* shadcn semantic colors (bg-*, text-*, border-* utilities) */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Extra token colors used directly by custom utilities/components */
+  --color-neutral: var(--token-neutral);
+  --color-success: var(--token-success);
+  --color-warning: var(--token-warning);
+  --color-danger: var(--token-danger);
+  --color-surface: var(--token-surface);
+  --color-text-primary: var(--token-text-primary);
+  --color-text-secondary: var(--token-text-secondary);
+
+  /* Border radius scale */
+  --radius-sm: var(--token-radius-sm);
+  --radius: var(--token-radius-md);
+  --radius-md: var(--token-radius-md);
+  --radius-lg: var(--token-radius-lg);
+  --radius-xl: var(--token-radius-xl);
+
+  /* Shadow scale */
+  --shadow-sm: var(--token-shadow-sm);
+  --shadow: var(--token-shadow-md);
+  --shadow-md: var(--token-shadow-md);
+  --shadow-lg: var(--token-shadow-lg);
+  --shadow-xl: var(--token-shadow-xl);
+
+  /* Spacing scale */
+  --spacing-section: var(--token-spacing-section);
+  --spacing-section-mobile: var(--token-spacing-section-mobile);
+  --spacing-container: var(--token-spacing-container);
+  --spacing-container-mobile: var(--token-spacing-container-mobile);
+
+  /* Layout max widths */
+  --max-width-page: var(--token-spacing-page-max-width);
+
+  /* Motion durations */
+  --duration-fast: var(--token-duration-fast);
+  --duration-normal: var(--token-duration-normal);
+  --duration-slow: var(--token-duration-slow);
+}
+
+@import "./theme.css";
+
+@layer base {
+  /* Base element defaults (token-backed). */
+  * {
+    border-color: var(--token-border);
+  }
+
+  body {
+    background-color: var(--token-background);
+    color: var(--token-text-primary);
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
+    font-family: var(--token-font-primary) !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Smooth scrolling for in-page anchor navigation */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Heading defaults */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--token-font-secondary);
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    color: var(--token-text-primary);
+  }
+
+  h1 {
+    font-size: 3rem;
+    line-height: 1.25;
+  }
+
+  h2 {
+    font-size: 2.25rem;
+    line-height: 1.25;
+  }
+
+  h3 {
+    font-size: 1.875rem;
+    line-height: 1.25;
+  }
+
+  h4 {
+    font-size: 1.5rem;
+    line-height: 1.5;
+  }
+
+  h5 {
+    font-size: 1.25rem;
+    line-height: 1.5;
+  }
+
+  h6 {
+    font-size: 1.125rem;
+    line-height: 1.5;
+  }
+
+  /* Default link styling for unstyled anchors.
+   * Links with explicit Tailwind text utilities should provide their own color/hover behavior. */
+  a:not([class*="text-"]):not([class*="hover:text-"]) {
+    color: var(--token-primary);
+    transition:
+      opacity 0.2s,
+      color 0.2s;
+  }
+
+  a:not([class*="text-"]):not([class*="hover:text-"]):hover {
+    opacity: 0.8;
+  }
+
+  /* Focus ring */
+  *:focus-visible {
+    outline: 2px solid var(--token-primary);
+    outline-offset: 2px;
+    border-radius: 0.5rem;
+  }
+
+  /* Text selection */
+  ::selection {
+    background-color: color-mix(in srgb, var(--token-primary) 20%, transparent);
+    color: var(--token-text-primary);
+  }
+}
+
+@layer utilities {
+  /* Small, globally reusable effects (keep minimal; prefer shadcn components). */
+
+  /* Gradient text utilities */
+
+  .text-gradient-secondary {
+    background: linear-gradient(
+      to right,
+      var(--token-secondary) 0%,
+      var(--token-accent) 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Shimmer utility (used in hero decorative elements) */
+  .shimmer {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shimmer::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      color-mix(in srgb, var(--token-surface) 20%, transparent),
+      transparent
+    );
+    animation: shimmer 2s infinite;
+  }
+
+  @keyframes shimmer {
+    100% {
+      left: 100%;
+    }
+  }
+}

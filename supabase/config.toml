@@ -1,0 +1,11 @@
+[auth]
+site_url = "http://localhost:3000"
+additional_redirect_urls = [
+  "http://localhost:3000/auth/callback",
+  "http://127.0.0.1:3000/auth/callback",
+]
+
+[auth.external.google]
+enabled = true
+client_id = "896403980637-jbgap0qvngk0gb5ef05e4sspag91vpgb.apps.googleusercontent.com"
+secret = "env(GOOGLE_CLIENT_SECRET)"

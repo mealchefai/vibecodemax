@@ -1,0 +1,7 @@
+---
+description: Coding Convention
+alwaysApply: false
+---
+# Coding Convention
+
+Follow strict TypeScript, validation, and testing conventions.

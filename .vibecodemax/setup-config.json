@@ -1,0 +1,65 @@
+{
+  "projectId": "e06ca895-b514-4c39-b0f2-2daaa4ea3ef7",
+  "appName": "Meal Chef AI",
+  "templateContractVersion": 1,
+  "dependencyManager": "npm",
+  "authProvider": "supabase",
+  "authProviders": {
+    "emailPassword": true,
+    "google": true,
+    "magicLinks": true
+  },
+  "databaseProvider": "supabase",
+  "schemaMigrationsRequired": true,
+  "paymentsProvider": "stripe",
+  "emailProvider": "resend",
+  "email": {
+    "provider": "resend",
+    "templates": {
+      "confirmEmail": {
+        "enabled": true,
+        "path": "src/lib/email/templates/confirm-email.html"
+      },
+      "resetPassword": {
+        "enabled": true,
+        "path": "src/lib/email/templates/reset-password.html"
+      }
+    }
+  },
+  "security": {
+    "rateLimiting": {
+      "provider": "upstash"
+    },
+    "captcha": {
+      "provider": "turnstile"
+    }
+  },
+  "backgroundJobs": {
+    "provider": "trigger"
+  },
+  "deploy": {
+    "provider": "vercel",
+    "method": "github"
+  },
+  "storageProvider": "supabase",
+  "storage": {
+    "provider": "supabase",
+    "mode": "two-buckets",
+    "mimeCategories": ["images"],
+    "buckets": {
+      "public": "public-assets",
+      "private": "private-uploads"
+    }
+  },
+  "testsEnabled": false,
+  "adminEnabled": true,
+  "userAccountsEnabled": true,
+  "colorStyle": "flat",
+  "useGradients": false,
+  "useShadows": false,
+  "tracking": {
+    "authority": "server",
+    "preferenceSource": "project_management_mode",
+    "hint": "Tracking preference is server-authoritative and managed in Project Management mode. MCP writes tracking events only when tracking is enabled server-side and an active project is connected."
+  }
+}

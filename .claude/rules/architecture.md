@@ -1,0 +1,3 @@
+# Architecture
+
+Keep route orchestration in app, reusable UI in components, and domain logic in lib.
