@@ -1,19 +1,68 @@
+import { redirect } from "next/navigation";
 import { requireUser } from "@/lib/auth/require-user";
-import { Card, CardHeader, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { getHealthProfile } from "@/lib/db/health-profiles";
+import { getUserEntitlement } from "@/lib/db/entitlements";
+import { getMostRecentMealPlan } from "@/lib/db/meal-plans";
+import { getJob } from "@/lib/db/jobs";
+import { UpgradeGate } from "@/components/app/upgrade-gate";
+import { NoMealPlanCard } from "@/components/app/no-meal-plan-card";
+import { GeneratingCard } from "@/components/app/generating-card";
+import { MealPlanSummaryCard } from "@/components/app/meal-plan-summary-card";
 
 export default async function AppPage() {
   const user = await requireUser();
+
+  // Redirect users who have not yet completed their health profile
+  const healthProfile = await getHealthProfile(user.id);
+  if (!healthProfile) {
+    redirect("/app/onboarding/profile");
+  }
+
+  const entitlement = await getUserEntitlement(user.id);
   const displayName = user.name || user.email || "there";
+
+  // Only query meal plan state for subscribed users
+  let dashboardCard = <UpgradeGate />;
+
+  if (entitlement) {
+    const mealPlan = await getMostRecentMealPlan(user.id);
+
+    if (!mealPlan || mealPlan.status === "failed") {
+      dashboardCard = <NoMealPlanCard />;
+    } else if (mealPlan.status === "generating") {
+      const job = mealPlan.job_id ? await getJob(mealPlan.job_id) : null;
+      dashboardCard = (
+        <GeneratingCard
+          progress={job?.progress ?? 0}
+          jobId={mealPlan.job_id}
+        />
+      );
+    } else if (mealPlan.status === "ready") {
+      dashboardCard = (
+        <MealPlanSummaryCard
+          mealPlanId={mealPlan.id}
+          dailyCalories={mealPlan.daily_calories}
+          goal={healthProfile.goal}
+          createdAt={mealPlan.created_at}
+        />
+      );
+    }
+  }
 
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-4xl mx-auto">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold tracking-tight text-text-primary">
-            Welcome back
-          </h1>
+          <div className="flex items-center gap-3">
+            <h1 className="text-4xl font-bold tracking-tight text-text-primary">
+              Welcome back
+            </h1>
+            {entitlement && (
+              <span className="bg-primary text-primary-foreground text-xs font-semibold px-2 py-0.5 rounded-full">
+                Pro
+              </span>
+            )}
+          </div>
           <p className="text-text-secondary mt-3 text-lg">
             Signed in as{" "}
             <span className="font-semibold text-foreground">{displayName}</span>
@@ -21,106 +70,7 @@ export default async function AppPage() {
           </p>
         </div>
 
-        <div className="mt-8">
-          <Card className="bg-surface border-border ">
-            <CardHeader>
-              <div className="flex items-center gap-3">
-                <div className="h-10 w-10 rounded-lg bg-primary flex items-center justify-center ">
-                  <svg
-                    className="h-5 w-5 text-primary-foreground"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-                    />
-                  </svg>
-                </div>
-                <h3 className="text-lg font-bold">Getting Started</h3>
-              </div>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-4">
-                <p className="text-sm text-text-secondary">
-                  Here are the next steps for this project:
-                </p>
-
-                <ul className="space-y-3 text-sm">
-                  <li className="flex items-start gap-3">
-                    <div className="h-6 w-6 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <svg
-                        className="h-3 w-3 text-primary-foreground"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                    </div>
-                    <span className="text-foreground">
-                      Complete your profile setup
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="h-6 w-6 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <svg
-                        className="h-3 w-3 text-primary-foreground"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                    </div>
-                    <span className="text-foreground">
-                      Explore your dashboard and profile settings
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <div className="h-6 w-6 rounded-full bg-primary flex items-center justify-center flex-shrink-0 mt-0.5">
-                      <svg
-                        className="h-3 w-3 text-primary-foreground"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M5 13l4 4L19 7"
-                        />
-                      </svg>
-                    </div>
-                    <span className="text-foreground">
-                      Connect the next feature you want to build
-                    </span>
-                  </li>
-                </ul>
-
-                <div className="flex gap-3 pt-2">
-                  <Button size="sm" asChild>
-                    <Link href="/app/profile">Complete Profile</Link>
-                  </Button>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
+        <div className="mt-8">{dashboardCard}</div>
       </div>
     </div>
   );

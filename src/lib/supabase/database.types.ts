@@ -451,6 +451,81 @@ export interface Database {
         };
         Relationships: [];
       };
+      user_health_profiles: {
+        Row: {
+          user_id: string;
+          age: number;
+          gender: "male" | "female";
+          weight_kg: number;
+          height_cm: number;
+          activity_level: "sedentary" | "light" | "moderate" | "active" | "very_active";
+          goal: "lose" | "maintain" | "gain";
+          dietary_preferences: string[] | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          user_id: string;
+          age: number;
+          gender: "male" | "female";
+          weight_kg: number;
+          height_cm: number;
+          activity_level: "sedentary" | "light" | "moderate" | "active" | "very_active";
+          goal: "lose" | "maintain" | "gain";
+          dietary_preferences?: string[] | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          user_id?: string;
+          age?: number;
+          gender?: "male" | "female";
+          weight_kg?: number;
+          height_cm?: number;
+          activity_level?: "sedentary" | "light" | "moderate" | "active" | "very_active";
+          goal?: "lose" | "maintain" | "gain";
+          dietary_preferences?: string[] | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      meal_plans: {
+        Row: {
+          id: string;
+          user_id: string;
+          job_id: string | null;
+          bmr: number;
+          tdee: number;
+          daily_calories: number;
+          status: "generating" | "ready" | "failed";
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          user_id: string;
+          job_id?: string | null;
+          bmr: number;
+          tdee: number;
+          daily_calories: number;
+          status: "generating" | "ready" | "failed";
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          user_id?: string;
+          job_id?: string | null;
+          bmr?: number;
+          tdee?: number;
+          daily_calories?: number;
+          status?: "generating" | "ready" | "failed";
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
       email_deliveries: {
         Row: {
           id: string;
