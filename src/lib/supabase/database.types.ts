@@ -526,6 +526,54 @@ export interface Database {
         };
         Relationships: [];
       };
+      meals: {
+        Row: {
+          id: string;
+          meal_plan_id: string;
+          day: number;
+          meal_type: "breakfast" | "lunch" | "dinner";
+          name: string;
+          description: string;
+          ingredients: string[];
+          calories: number;
+          protein_g: number;
+          carbs_g: number;
+          fat_g: number;
+          image_file_id: string | null;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          meal_plan_id: string;
+          day: number;
+          meal_type: "breakfast" | "lunch" | "dinner";
+          name: string;
+          description: string;
+          ingredients?: string[];
+          calories: number;
+          protein_g: number;
+          carbs_g: number;
+          fat_g: number;
+          image_file_id?: string | null;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          meal_plan_id?: string;
+          day?: number;
+          meal_type?: "breakfast" | "lunch" | "dinner";
+          name?: string;
+          description?: string;
+          ingredients?: string[];
+          calories?: number;
+          protein_g?: number;
+          carbs_g?: number;
+          fat_g?: number;
+          image_file_id?: string | null;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
       email_deliveries: {
         Row: {
           id: string;

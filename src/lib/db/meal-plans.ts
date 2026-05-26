@@ -97,3 +97,19 @@ export async function setMealPlanJobId(
     throw new Error(error.message || "Failed to update meal plan job_id");
   }
 }
+
+export async function updateMealPlanStatus(
+  mealPlanId: string,
+  status: "ready" | "failed"
+): Promise<void> {
+  const admin = supabaseAdmin();
+
+  const { error } = await admin
+    .from("meal_plans")
+    .update({ status })
+    .eq("id", mealPlanId);
+
+  if (error) {
+    throw new Error(error.message || "Failed to update meal plan status");
+  }
+}
