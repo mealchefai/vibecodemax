@@ -11,4 +11,5 @@ export * from "./modal";
 export * from "./select";
 export * from "./spinner";
 export * from "./switch";
+export * from "./tabs";
 export * from "./textarea";

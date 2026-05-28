@@ -1,4 +1,4 @@
-import Replicate from "replicate";
+import Replicate, { type FileOutput } from "replicate";
 
 function getReplicateClient(): Replicate {
   const apiToken = process.env.REPLICATE_API_TOKEN;
@@ -6,6 +6,14 @@ function getReplicateClient(): Replicate {
     throw new Error("REPLICATE_API_TOKEN environment variable is not set");
   }
   return new Replicate({ auth: apiToken });
+}
+
+function isFileOutput(value: unknown): value is FileOutput {
+  return (
+    value !== null &&
+    typeof value === "object" &&
+    typeof (value as Record<string, unknown>).blob === "function"
+  );
 }
 
 export async function generateMealImage(
@@ -20,22 +28,29 @@ export async function generateMealImage(
     input: { prompt },
   });
 
-  // flux-schnell returns a URL string or an array of URL strings
-  const imageUrl = Array.isArray(output) ? output[0] : output;
+  // SDK v1.x returns FileOutput (a ReadableStream subclass with .blob() and .url())
+  // for image models. Handle both FileOutput and legacy plain-URL responses.
+  const fileOutput = Array.isArray(output) ? output[0] : output;
 
-  if (typeof imageUrl !== "string" || !imageUrl.startsWith("http")) {
-    throw new Error(
-      `Replicate returned an unexpected output format: ${JSON.stringify(imageUrl)}`
-    );
+  if (isFileOutput(fileOutput)) {
+    const blob = await fileOutput.blob();
+    const arrayBuffer = await blob.arrayBuffer();
+    return Buffer.from(arrayBuffer);
   }
 
-  const res = await fetch(imageUrl);
-  if (!res.ok) {
-    throw new Error(
-      `Failed to download image from Replicate: ${res.status} ${res.statusText}`
-    );
+  // Fallback: legacy string URL response
+  if (typeof fileOutput === "string" && fileOutput.startsWith("http")) {
+    const res = await fetch(fileOutput);
+    if (!res.ok) {
+      throw new Error(
+        `Failed to download image from Replicate: ${res.status} ${res.statusText}`
+      );
+    }
+    const arrayBuffer = await res.arrayBuffer();
+    return Buffer.from(arrayBuffer);
   }
 
-  const arrayBuffer = await res.arrayBuffer();
-  return Buffer.from(arrayBuffer);
+  throw new Error(
+    `Replicate returned an unexpected output format: ${JSON.stringify(fileOutput)}`
+  );
 }

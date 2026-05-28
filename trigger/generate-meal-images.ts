@@ -11,6 +11,7 @@ import { supabaseAdmin } from "@/lib/supabase/admin";
 
 type GenerateMealImagesPayload = {
   jobId: string;
+  originalJobId: string;
   meal_plan_id: string;
   user_id: string;
   meal_ids: string[];
@@ -20,7 +21,7 @@ export default task({
   id: "generate-meal-images",
   maxDuration: 300,
   run: async (payload: GenerateMealImagesPayload) => {
-    const { jobId, meal_plan_id, user_id, meal_ids } = payload;
+    const { jobId, originalJobId, meal_plan_id, user_id, meal_ids } = payload;
 
     try {
       // Step 1 — Fetch all meal rows in one query
@@ -32,7 +33,7 @@ export default task({
 
       if (fetchError || !mealRows) {
         const message = fetchError?.message || "Failed to fetch meal rows";
-        await failJob(jobId, message);
+        await failJob(originalJobId, message);
         await updateMealPlanStatus(meal_plan_id, "failed");
         throw new Error(message);
       }
@@ -92,9 +93,9 @@ export default task({
           );
         }
 
-        // 2g — Update progress: 50–95% spread across all meals
+        // 2g — Update progress on the original job: 50–95% spread across all meals
         await updateJobProgress(
-          jobId,
+          originalJobId,
           Math.round(50 + ((i + 1) / mealRows.length) * 45)
         );
       }
@@ -102,15 +103,17 @@ export default task({
       // Step 3 — Mark the meal plan as ready
       await updateMealPlanStatus(meal_plan_id, "ready");
 
-      // Step 4-5 — Complete the job
-      await updateJobProgress(jobId, 100);
-      await completeJob(jobId, { meal_plan_id, images_processed: mealRows.length });
+      // Step 4-5 — Complete the original job now that text + images are both done.
+      // This is the event the progress screen is watching — firing it here ensures
+      // meal_plans.status is already 'ready' before the redirect to the plan page.
+      await updateJobProgress(originalJobId, 100);
+      await completeJob(originalJobId, { meal_plan_id, images_processed: mealRows.length });
     } catch (error) {
       // Unhandled error — mark plan failed and propagate
       const message =
         error instanceof Error ? error.message : "Unexpected job failure";
       try {
-        await failJob(jobId, message);
+        await failJob(originalJobId, message);
         await updateMealPlanStatus(meal_plan_id, "failed");
       } catch {
         // Best-effort cleanup

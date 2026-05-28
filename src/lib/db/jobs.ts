@@ -2,6 +2,7 @@ import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export interface JobSummary {
   id: string;
+  user_id: string | null;
   status: "queued" | "processing" | "completed" | "failed";
   progress: number;
 }
@@ -11,7 +12,7 @@ export async function getJob(jobId: string): Promise<JobSummary | null> {
 
   const { data, error } = await supabase
     .from("jobs")
-    .select("id, status, progress")
+    .select("id, user_id, status, progress")
     .eq("id", jobId)
     .maybeSingle();
 
@@ -24,6 +25,7 @@ export async function getJob(jobId: string): Promise<JobSummary | null> {
 
   return {
     id: data.id,
+    user_id: data.user_id ?? null,
     status: data.status,
     progress: data.progress ?? 0,
   };

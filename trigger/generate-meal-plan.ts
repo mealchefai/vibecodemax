@@ -1,6 +1,5 @@
 import { task } from "@trigger.dev/sdk";
 import {
-  completeJob,
   failJob,
   triggerJob,
   updateJobProgress,
@@ -74,13 +73,19 @@ export default task({
       // Step 5 — Meals persisted
       await updateJobProgress(jobId, 40);
 
-      // Step 6 — Dispatch image generation job
+      // Step 6 — Dispatch image generation job, passing the original jobId
+      // so the image job can continue updating progress (50→100) and fire
+      // completeJob on the same job the progress screen is watching.
+      // This job must NOT call completeJob itself — doing so would mark the
+      // job completed before images are ready and cause a redirect loop between
+      // the progress screen and the plan page.
       const mealIds = insertedMeals.map((m) => m.id);
       try {
         await triggerJob({
           type: "generate-meal-images",
           userId: user_id,
           input: {
+            originalJobId: jobId,
             meal_plan_id,
             user_id,
             meal_ids: mealIds,
@@ -96,9 +101,10 @@ export default task({
         throw error;
       }
 
-      // Step 7-8 — Image job dispatched; complete this job
+      // Step 7 — Image job dispatched; update progress to 50% but do NOT
+      // complete this job — the image job owns the 50→100 range and calls
+      // completeJob when all images are done.
       await updateJobProgress(jobId, 50);
-      await completeJob(jobId, { meal_plan_id, meal_count: mealIds.length });
     } catch (error) {
       // Outer catch for any unhandled errors not caught by inner blocks
       // Inner blocks re-throw so we only reach here from unexpected paths
