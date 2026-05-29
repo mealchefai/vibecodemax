@@ -2,12 +2,15 @@ import { redirect } from "next/navigation";
 import { requireUser } from "@/lib/auth/require-user";
 import { getHealthProfile } from "@/lib/db/health-profiles";
 import { getUserEntitlement } from "@/lib/db/entitlements";
-import { getMostRecentMealPlan } from "@/lib/db/meal-plans";
+import { getMostRecentMealPlan, getMealPlanWithMeals } from "@/lib/db/meal-plans";
 import { getJob } from "@/lib/db/jobs";
+import { getFileUrl } from "@/lib/storage/file-urls";
+import { createSupabaseServerClient } from "@/lib/supabase/server";
 import { UpgradeGate } from "@/components/app/upgrade-gate";
 import { NoMealPlanCard } from "@/components/app/no-meal-plan-card";
 import { GeneratingCard } from "@/components/app/generating-card";
-import { MealPlanSummaryCard } from "@/components/app/meal-plan-summary-card";
+import { TodaysMealsGrid } from "@/components/app/todays-meals-grid";
+import type { MealWithImageUrl } from "@/components/app/meal-plan-tabs";
 
 export default async function AppPage() {
   const user = await requireUser();
@@ -23,9 +26,10 @@ export default async function AppPage() {
 
   // Only query meal plan state for subscribed users
   let dashboardCard = <UpgradeGate />;
+  let mealPlan: Awaited<ReturnType<typeof getMostRecentMealPlan>> = null;
 
   if (entitlement) {
-    const mealPlan = await getMostRecentMealPlan(user.id);
+    mealPlan = await getMostRecentMealPlan(user.id);
 
     if (!mealPlan || mealPlan.status === "failed") {
       dashboardCard = <NoMealPlanCard />;
@@ -38,12 +42,59 @@ export default async function AppPage() {
         />
       );
     } else if (mealPlan.status === "ready") {
+      // Determine today's day number: Mon=1 … Sun=7
+      const jsDay = new Date().getDay(); // 0=Sun, 1=Mon, …, 6=Sat
+      const todayDayNumber = jsDay === 0 ? 7 : jsDay;
+
+      const fullPlan = await getMealPlanWithMeals(mealPlan.id);
+      const todaysMeals = (fullPlan?.meals ?? [])
+        .filter((m) => m.day === todayDayNumber)
+        .sort((a, b) => {
+          const order = { breakfast: 0, lunch: 1, dinner: 2 };
+          return (order[a.meal_type] ?? 0) - (order[b.meal_type] ?? 0);
+        });
+
+      // Resolve signed URLs in a single IN query
+      const fileIds = todaysMeals
+        .map((m) => m.image_file_id)
+        .filter((id): id is string => id !== null);
+
+      const fileUrlMap = new Map<string, string | null>();
+
+      if (fileIds.length > 0) {
+        const supabase = await createSupabaseServerClient();
+        const { data: fileRows } = await supabase
+          .from("files")
+          .select("id, bucket, key, visibility")
+          .in("id", fileIds);
+
+        if (fileRows) {
+          await Promise.all(
+            fileRows.map(async (file) => {
+              const url = await getFileUrl({
+                bucket: file.bucket,
+                key: file.key,
+                visibility: file.visibility as "public" | "private",
+              });
+              fileUrlMap.set(file.id, url);
+            })
+          );
+        }
+      }
+
+      const todaysMealsWithUrls: MealWithImageUrl[] = todaysMeals.map(
+        (meal) => ({
+          ...meal,
+          imageUrl: meal.image_file_id
+            ? (fileUrlMap.get(meal.image_file_id) ?? null)
+            : null,
+        })
+      );
+
       dashboardCard = (
-        <MealPlanSummaryCard
+        <TodaysMealsGrid
+          meals={todaysMealsWithUrls}
           mealPlanId={mealPlan.id}
-          dailyCalories={mealPlan.daily_calories}
-          goal={healthProfile.goal}
-          createdAt={mealPlan.created_at}
         />
       );
     }
@@ -55,7 +106,7 @@ export default async function AppPage() {
         <div className="mb-8">
           <div className="flex items-center gap-3">
             <h1 className="text-4xl font-bold tracking-tight text-text-primary">
-              Welcome back
+              Welcome back, {displayName}
             </h1>
             {entitlement && (
               <span className="bg-primary text-primary-foreground text-xs font-semibold px-2 py-0.5 rounded-full">
@@ -63,11 +114,11 @@ export default async function AppPage() {
               </span>
             )}
           </div>
-          <p className="text-text-secondary mt-3 text-lg">
-            Signed in as{" "}
-            <span className="font-semibold text-foreground">{displayName}</span>
-            .
-          </p>
+          {entitlement && mealPlan?.status === "ready" && (
+            <p className="text-text-secondary mt-3 text-lg">
+              Today&apos;s Meals
+            </p>
+          )}
         </div>
 
         <div className="mt-8">{dashboardCard}</div>
