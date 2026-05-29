@@ -40,6 +40,10 @@ const accountDropdownItems: NavItem[] = [
     href: "/app/profile",
   },
   {
+    label: "Health Profile",
+    href: "/app/settings/health-profile",
+  },
+  {
     label: "Admin",
     href: "/admin",
   },

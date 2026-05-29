@@ -1,12 +1,9 @@
 "use server";
 
-import { redirect } from "next/navigation";
 import { requireUser } from "@/lib/auth/require-user";
 import { upsertHealthProfile } from "@/lib/db/health-profiles";
 import type { ActivityLevel, Goal, Gender } from "@/lib/db/health-profiles";
 import type { HealthProfileFormState } from "@/components/forms/health-profile-form";
-
-export type { HealthProfileFormState };
 
 const ALLOWED_DIETARY_PREFERENCES = [
   "Vegetarian",
@@ -34,7 +31,7 @@ function hasMaxOneDecimalPlace(value: number): boolean {
   return Number.isInteger(value * 10);
 }
 
-export async function saveHealthProfile(
+export async function updateHealthProfile(
   _prevState: HealthProfileFormState,
   formData: FormData
 ): Promise<HealthProfileFormState> {
@@ -56,7 +53,8 @@ export async function saveHealthProfile(
   }
 
   const weightRaw = formData.get("weight_kg");
-  const weight = weightRaw !== null && weightRaw !== "" ? Number(weightRaw) : NaN;
+  const weight =
+    weightRaw !== null && weightRaw !== "" ? Number(weightRaw) : NaN;
   if (
     isNaN(weight) ||
     weight < 30 ||
@@ -68,7 +66,8 @@ export async function saveHealthProfile(
   }
 
   const heightRaw = formData.get("height_cm");
-  const height = heightRaw !== null && heightRaw !== "" ? Number(heightRaw) : NaN;
+  const height =
+    heightRaw !== null && heightRaw !== "" ? Number(heightRaw) : NaN;
   if (
     isNaN(height) ||
     height < 100 ||
@@ -102,7 +101,8 @@ export async function saveHealthProfile(
         )
       : [];
   if (dietary.length > 8) {
-    errors.dietary_preferences = "Please select at most 8 dietary preferences.";
+    errors.dietary_preferences =
+      "Please select at most 8 dietary preferences.";
   }
 
   // 3. Return field errors if any validation failed
@@ -110,9 +110,9 @@ export async function saveHealthProfile(
     return { errors };
   }
 
-  // 4. Persist
+  // 4. Persist — upsert returns success/failure, does NOT redirect
   const result = await upsertHealthProfile(user.id, {
-    age: age,
+    age,
     gender: genderRaw as Gender,
     weight_kg: weight,
     height_cm: height,
@@ -127,6 +127,6 @@ export async function saveHealthProfile(
     };
   }
 
-  // 5. Redirect on success
-  redirect("/app");
+  // 5. Return success flag — the form renders successContent when this is true
+  return { success: true };
 }

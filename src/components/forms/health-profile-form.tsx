@@ -4,8 +4,21 @@ import React, { useActionState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import type { HealthProfileFormState } from "@/app/(protected)/app/onboarding/actions";
 import type { HealthProfile } from "@/lib/db/health-profiles";
+
+export interface HealthProfileFormState {
+  errors?: {
+    age?: string;
+    gender?: string;
+    weight_kg?: string;
+    height_cm?: string;
+    activity_level?: string;
+    goal?: string;
+    dietary_preferences?: string;
+    _root?: string;
+  };
+  success?: boolean;
+}
 
 interface HealthProfileFormProps {
   saveAction: (
@@ -13,6 +26,8 @@ interface HealthProfileFormProps {
     formData: FormData
   ) => Promise<HealthProfileFormState>;
   defaultValues?: HealthProfile | null;
+  submitLabel?: string;
+  successContent?: React.ReactNode;
 }
 
 const ACTIVITY_LEVELS = [
@@ -77,6 +92,8 @@ const initialState: HealthProfileFormState = { errors: {} };
 export function HealthProfileForm({
   saveAction,
   defaultValues,
+  submitLabel,
+  successContent,
 }: HealthProfileFormProps) {
   const [state, formAction, isPending] = useActionState(
     saveAction,
@@ -87,7 +104,10 @@ export function HealthProfileForm({
   const dv = defaultValues;
 
   return (
-    <form action={formAction} className="space-y-8">
+    <form action={formAction} className="space-y-8" noValidate>
+      {/* Success banner — injected by parent, rendered when save succeeds */}
+      {state?.success && successContent}
+
       {/* Root error banner */}
       {errors._root && (
         <div className="rounded-lg border border-danger/30 bg-danger/10 px-4 py-3">
@@ -282,7 +302,7 @@ export function HealthProfileForm({
 
       {/* Submit */}
       <Button type="submit" disabled={isPending} className="w-full sm:w-auto">
-        {isPending ? "Saving…" : "Save and continue"}
+        {isPending ? "Saving…" : (submitLabel ?? "Save and continue")}
       </Button>
     </form>
   );
