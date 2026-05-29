@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import Link from "next/link";
 import { requireUser } from "@/lib/auth/require-user";
 import { getHealthProfile } from "@/lib/db/health-profiles";
 import { getUserEntitlement } from "@/lib/db/entitlements";
@@ -10,6 +11,7 @@ import { UpgradeGate } from "@/components/app/upgrade-gate";
 import { NoMealPlanCard } from "@/components/app/no-meal-plan-card";
 import { GeneratingCard } from "@/components/app/generating-card";
 import { TodaysMealsGrid } from "@/components/app/todays-meals-grid";
+import { Button } from "@/components/ui/button";
 import type { MealWithImageUrl } from "@/components/app/meal-plan-tabs";
 
 export default async function AppPage() {
@@ -91,33 +93,43 @@ export default async function AppPage() {
         })
       );
 
-      dashboardCard = (
-        <TodaysMealsGrid
-          meals={todaysMealsWithUrls}
-          mealPlanId={mealPlan.id}
-        />
-      );
+      dashboardCard = <TodaysMealsGrid meals={todaysMealsWithUrls} />;
     }
   }
 
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-4xl mx-auto">
-        <div className="mb-8">
-          <div className="flex items-center gap-3">
-            <h1 className="text-4xl font-bold tracking-tight text-text-primary">
-              Welcome back, {displayName}
-            </h1>
-            {entitlement && (
-              <span className="bg-primary text-primary-foreground text-xs font-semibold px-2 py-0.5 rounded-full">
-                Pro
-              </span>
+        <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+          {/* Title + subtitle */}
+          <div>
+            <div className="flex items-center gap-3">
+              <h1 className="text-4xl font-bold tracking-tight text-text-primary">
+                Welcome back, {displayName}
+              </h1>
+              {entitlement && (
+                <span className="bg-primary text-primary-foreground text-xs font-semibold px-2 py-0.5 rounded-full">
+                  Pro
+                </span>
+              )}
+            </div>
+            {entitlement && mealPlan?.status === "ready" && (
+              <p className="text-text-secondary mt-2 text-lg">
+                Today&apos;s Meals
+              </p>
             )}
           </div>
-          {entitlement && mealPlan?.status === "ready" && (
-            <p className="text-text-secondary mt-3 text-lg">
-              Today&apos;s Meals
-            </p>
+
+          {/* Action buttons — only when a ready plan exists */}
+          {mealPlan?.status === "ready" && mealPlan && (
+            <div className="flex items-center gap-2 shrink-0">
+              <Button variant="outline" size="sm" asChild>
+                <Link href={`/app/plan/${mealPlan.id}`}>View full plan</Link>
+              </Button>
+              <Button size="sm" asChild>
+                <Link href="/app/generate">Generate new plan</Link>
+              </Button>
+            </div>
           )}
         </div>
 

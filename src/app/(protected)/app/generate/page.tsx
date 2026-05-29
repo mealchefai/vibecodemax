@@ -76,7 +76,7 @@ export default async function GeneratePage() {
               Your profile
             </h2>
             <Link
-              href="/app/profile/health"
+              href="/app/settings/health-profile"
               className="text-xs text-primary hover:underline underline-offset-4"
             >
               Edit profile
