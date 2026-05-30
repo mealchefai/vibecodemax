@@ -14,7 +14,7 @@ create table if not exists public.meals (
   protein_g     numeric(6,1) not null,
   carbs_g       numeric(6,1) not null,
   fat_g         numeric(6,1) not null,
-  image_file_id uuid references public.files(id) on delete set null,
+  image_file_id uuid,
   created_at    timestamptz not null default now()
 );
 

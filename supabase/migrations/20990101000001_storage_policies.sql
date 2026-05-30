@@ -30,6 +30,14 @@ on public.files(owner_user_id);
 
 
 
+-- Meal image file reference (FK deferred here because public.files is created above)
+alter table public.meals
+add constraint meals_image_file_id_fkey
+foreign key (image_file_id) references public.files(id) on delete set null
+not valid;
+
+alter table public.meals validate constraint meals_image_file_id_fkey;
+
 -- Avatar file reference
 alter table public.profiles
 add column if not exists avatar_file_id uuid references public.files(id);
