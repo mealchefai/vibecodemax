@@ -6,8 +6,6 @@ import { upsertHealthProfile } from "@/lib/db/health-profiles";
 import type { ActivityLevel, Goal, Gender } from "@/lib/db/health-profiles";
 import type { HealthProfileFormState } from "@/components/forms/health-profile-form";
 
-export type { HealthProfileFormState };
-
 const ALLOWED_DIETARY_PREFERENCES = [
   "Vegetarian",
   "Vegan",
